@@ -19,10 +19,10 @@ public class Test1 {
 
         String path = "src/com/qa/file/IDs.txt";
 
-//        String scid = getUnusedScenarioId(path);
-//        System.out.println(scid);
+        String scid = getUnusedScenarioId(path);
+        System.out.println(scid);
 
-        appendMoreScenarioIDs(path);
+//        appendMoreScenarioIDs(path);
 
 //        usedScenarioCleanUp(path, "|U");
 
@@ -32,6 +32,7 @@ public class Test1 {
     public static String getUnusedScenarioId(String sourceFilePath){
 
         usedScenarioCleanUp(sourceFilePath, "|U");
+        appendMoreScenarioIDs(sourceFilePath);
 
         Path filePath = Paths.get(sourceFilePath);
 
