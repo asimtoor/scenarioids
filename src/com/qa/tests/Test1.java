@@ -1,15 +1,12 @@
 package com.qa.tests;
 
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -21,11 +18,6 @@ public class Test1 {
 
         String scid = getUnusedScenarioId(path);
         System.out.println(scid);
-
-//        appendMoreScenarioIDs(path);
-
-//        usedScenarioCleanUp(path, "|U");
-
 
     }
 
@@ -45,6 +37,7 @@ public class Test1 {
             for(int i=0; i<lines.size(); i++){
 
                 if(!lines.get(i).contains("|U")){
+                    // Mark the line as used by appending "|U" to it
                     lines.set(i, lines.get(i) + "|U");
 
                     str = lines.get(i);
@@ -52,6 +45,8 @@ public class Test1 {
                 }
             }
             Files.write(filePath, lines);
+            // Remove the "|U" from the returned string before returning it
+            str = str.replace("|U", "");
 
         }catch (IOException e){
             e.printStackTrace();
